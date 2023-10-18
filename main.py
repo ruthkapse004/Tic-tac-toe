@@ -8,7 +8,7 @@ def print_board(matrix):
 
 if __name__ == "__main__":
     matrix = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
-    turn = 1
+    turn = 0
 
     print("Welcome to Tic Tac Toe")
     print_board(matrix)
@@ -16,14 +16,22 @@ if __name__ == "__main__":
     while (True):
         if turn:
             print("X's turn")
-            x, y = map(int, input("Enter the position (x,y): ").split(","))
+            x, y = list(
+                map(int, input("Enter the position (x,y): ").split(",")))
+            if (matrix[x-1][y-1] != " "):
+                print(F"Position is already marked by '{matrix[x-1][y-1]}'.")
+                continue
 
             matrix[x-1][y-1] = "X"
             print_board(matrix)
 
         else:
             print("0's turn")
-            x, y = map(int, input("Enter the position (x,y): ").split(","))
+            x, y = list(
+                map(int, input("Enter the position (x,y): ").split(",")))
+            if (matrix[x-1][y-1] != " "):
+                print(F"Position is already marked by '{matrix[x-1][y-1]}'.")
+                continue
 
             matrix[x-1][y-1] = "0"
             print_board(matrix)
