@@ -8,6 +8,23 @@ def print_board(matrix):
 
 if __name__ == "__main__":
     matrix = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
+    turn = 1
 
     print("Welcome to Tic Tac Toe")
     print_board(matrix)
+
+    while (True):
+        if turn:
+            print("X's turn")
+            x, y = map(int, input("Enter the position (x,y): ").split(","))
+
+            matrix[x-1][y-1] = "X"
+            print_board(matrix)
+
+        else:
+            print("0's turn")
+            x, y = map(int, input("Enter the position (x,y): ").split(","))
+
+            matrix[x-1][y-1] = "0"
+            print_board(matrix)
+        turn = 1-turn
