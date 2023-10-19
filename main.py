@@ -12,20 +12,20 @@ def print_board(matrix):
 def check_winner(matrix):
     win = None
 
-    if (matrix[0][0] == matrix[1][1] == matrix[2][2] != " "):
+    if matrix[0][0] == matrix[1][1] == matrix[2][2] != " ":
         win = matrix[0][0]
         return win
 
-    if (matrix[0][2] == matrix[1][1] == matrix[2][0] != " "):
+    if matrix[0][2] == matrix[1][1] == matrix[2][0] != " ":
         win = matrix[0][2]
         return win
 
     for i in range(3):
-        if (matrix[i][0] == matrix[i][1] == matrix[i][2] != " "):
+        if matrix[i][0] == matrix[i][1] == matrix[i][2] != " ":
             win = matrix[i][0]
             return win
 
-        if (matrix[0][i] == matrix[1][i] == matrix[2][i] != " "):
+        if matrix[0][i] == matrix[1][i] == matrix[2][i] != " ":
             win = matrix[0][i]
             return win
 
@@ -38,39 +38,41 @@ def check_winner(matrix):
 
 
 if __name__ == "__main__":
-    matrix = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
+    board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
     turn = choice((0, 1))
 
     print("Welcome to Tic Tac Toe")
-    print_board(matrix)
+    print_board(board)
 
-    while (True):
+    while True:
         if turn:
             print("X's turn")
             x, y = list(
                 map(int, input("Enter the position (x,y): ").split(",")))
-            if (matrix[x-1][y-1] != " "):
-                print(F"Position is already marked by '{matrix[x-1][y-1]}'.")
+
+            if board[x-1][y-1] != " ":
+                print(F"Position is already marked by '{board[x-1][y-1]}'.")
                 continue
-            matrix[x-1][y-1] = "X"
+            board[x-1][y-1] = "X"
 
         else:
             print("0's turn")
             x, y = list(
                 map(int, input("Enter the position (x,y): ").split(",")))
-            if (matrix[x-1][y-1] != " "):
-                print(F"Position is already marked by '{matrix[x-1][y-1]}'.")
+
+            if board[x-1][y-1] != " ":
+                print(F"Position is already marked by '{board[x-1][y-1]}'.")
                 continue
-            matrix[x-1][y-1] = "0"
+            board[x-1][y-1] = "0"
 
-        print_board(matrix)
+        print_board(board)
+        winner = check_winner(board)
 
-        winner = check_winner(matrix)
-        if (winner == -1):
+        if winner == -1:
             print("Match Tie!")
             break
 
-        if (winner):
+        if winner:
             print(f"{winner} Wins!")
             break
 
